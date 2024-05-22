@@ -1,0 +1,4 @@
+".\Objects\main.obj",
+".\Objects\delay.obj" 
+TO ".\Objects\chaptatdenled" 
+PRINT(".\Listings\chaptatdenled.m51") RAMSIZE(256) 
