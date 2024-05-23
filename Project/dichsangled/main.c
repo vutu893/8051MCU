@@ -8,6 +8,8 @@ void mode_led_1();
 void mode_led_2();
 void mode_led_3();
 void mode_led_4();
+void mode_led_5();
+void mode_led_6();
 
 int main()
 {		
@@ -16,7 +18,8 @@ int main()
 		delay_ms(1000);
 		while(1)
 		{
-			mode_led_4();
+			mode_led_6();
+			delay_ms(300);
 		}
 }
 //che do sang thu nhat
@@ -29,7 +32,7 @@ void mode_led_1()
 // che do sang thu hai
 void mode_led_2()
 {
-	int i;
+	unsigned char i;
 	for(i = 0; i < 8; i++)
 	{
 		LED_PORT = LED_PORT | 1 << i;
@@ -44,7 +47,7 @@ void mode_led_2()
 //che do sang thu ba
 void mode_led_3()
 {
-	int i;
+	unsigned char i;
 	for(i = 0; i < 8; i++)
 	{
 		LED_PORT = 0x01 << i;
@@ -78,4 +81,35 @@ void mode_led_4()
 } 
 
 //che do sang thu 5
+void mode_led_5()
+{	
+	unsigned char j = 1;
+	unsigned char i;
+	unsigned char tmp[] = {0x81, 0x42, 0x24, 0x18};
+	for(i = 0; i < 8; i++)
+	{
+		if(i < 4)
+		{
+			LED_PORT = LED_PORT | tmp[i];
+			delay_ms(400);
+		}else
+		{
+			LED_PORT = LED_PORT ^ tmp[i - j];
+			delay_ms(400);
+			j += 2;
+		}
+	}
+}
+//che do sang thu 6
+void mode_led_6()
+{
+	LED_PORT =  0xAA;
+	delay_ms(400);
+	LED_PORT = 0x00;
+	delay_ms(200);
+	LED_PORT =  0X55;
+	delay_ms(400);
+	LED_PORT = 0x00;
+	delay_ms(200);
+}
 
