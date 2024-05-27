@@ -2,6 +2,7 @@
 #include "../../Lib/delay.h"
 
 //bai5: giao tiep va xuat du lieu ra lcd
+//test cac thu vien lcd
 //cau hinh chan cho lcd
 sbit LCD_RS = P2^0;
 sbit LCD_EN = P2^1;
