@@ -1,0 +1,1 @@
+//khoi tao che do 8bit, 2dong
