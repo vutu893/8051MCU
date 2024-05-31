@@ -14,38 +14,102 @@
 ///-------------------------------build library lcd connect 8bit-------------------------------------------------
 
 //cac thu vien can include
+#include <REGX52.H>
 #include "delay.h"
-#include "port.h"
 #include "LCD_8.h"
-
-//init lcd
-void lcd_init()
-{
-	lcd_cmd(_LCD_8BIT_1LINE_5x7FONT);
-	delay_ms(5);
-	lcd_cmd(_LCD_8BIT_1LINE_5x7FONT);
-	delay_ms(1);
-	
-	lcd_cmd(_LCD_8BIT_1LINE_5x7FONT);
-	lcd_cmd(_LCD_8BIT_2LINE_5x7FONT);//so dong la 2, font chu la 5x8
-	
-	lcd_cmd(0x01); //xoa noi dung tren lcd
-	lcd_cmd(0x0C); //bat hien thi va xoa con tro
-}
+#include "port.h"
 
 //thiet lap che do cho lcd
 void lcd_cmd(unsigned char cmd)
 {
 	LCD_RS = 0;
 	LCD_PORT = cmd;
-	LCD_EN = 0;
-	LCD_EN = 1;
+	LCD_ENB = 0;
+	LCD_ENB = 1;
+	
 	if(cmd <= 0x02)
 	{
 		delay_ms(2);
 	}else
 	{
 		delay_ms(1);
+	}
+	
+}
+
+//init lcd
+void lcd_init()
+{
+	lcd_cmd(0x30);
+	delay_ms(5);
+	
+	lcd_cmd(0x30);
+	delay_ms(1);
+	
+	lcd_cmd(0x30);
+	//che do lcd su dung 2 dong va font chu la 5x8
+	lcd_cmd(0x38);
+	
+	//xoa man hinh lcd 
+	lcd_cmd(0x01);
+	
+	//bat hien thi va xoa con tro
+	lcd_cmd(0x0C);
+}
+//in mot ki tu ra man hinh
+void lcd_out_char(char c)
+{
+	LCD_RS = 1;
+	LCD_PORT = c;
+	LCD_ENB = 0;
+	LCD_ENB = 1;
+	delay_ms(1);
+}
+	
+//in mot chuoi ki tu ra man hinh
+void lcd_out_str(char *str)
+{
+	unsigned char i = 0;
+	while(str[i] != 0)
+	{
+		lcd_out_char(str[i]);
+		i++;
+	}
+}
+
+//hien thi mot ki tu o vi tri bat ki
+void lcd_pos_char(unsigned char row, unsigned char col, char c)
+{
+	unsigned char cmd;
+	cmd = row == 1? 0x80: 0xC0;
+	cmd = cmd + col -1;
+	
+	lcd_cmd(cmd);
+	
+	lcd_out_char(c);
+}
+
+//hien thi mot chuoi ki tu o vi tri bat ki
+void lcd_pos_str(unsigned char row, unsigned char col, char *str)
+{
+	unsigned char cmd;
+	cmd = row == 1? 0x80: 0xC0;
+	cmd = cmd + col -1;
+	
+	lcd_cmd(cmd);
+	
+	lcd_out_str(str);
+}
+
+
+//customer a lcd display
+void lcd_customer_display(unsigned char location, unsigned char* lcd_char)
+{
+	unsigned char i;
+	lcd_cmd(0x40 + location*8);
+	for(i = 0; i<=7; i++)
+	{
+		lcd_out_char(lcd_char[i]);
 	}
 }
 
