@@ -18,6 +18,8 @@
 #include "delay.h"
 #include "LCD_8.h"
 #include "port.h"
+#include <stdio.h>
+#include <string.h>
 
 //thiet lap che do cho lcd
 void lcd_cmd(unsigned char cmd)
@@ -115,9 +117,9 @@ void lcd_customer_display(unsigned char location, unsigned char* lcd_char)
 
 //hien thi khi input la 1 so nguyen
 
-void lcd_out_int(unsigned char n)
+void lcd_out_int(int n)
 {
-	char *str;
-	intToStr(n, str);
+	char str[10];
+	sprintf(str, "%d", n);
 	lcd_out_str(str);
 }
