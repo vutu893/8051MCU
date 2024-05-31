@@ -113,3 +113,11 @@ void lcd_customer_display(unsigned char location, unsigned char* lcd_char)
 	}
 }
 
+//hien thi khi input la 1 so nguyen
+
+void lcd_out_int(unsigned char n)
+{
+	char *str;
+	intToStr(n, str);
+	lcd_out_str(str);
+}
