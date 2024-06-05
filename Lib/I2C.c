@@ -16,7 +16,7 @@
 
 #include <REGX52.H>
 #include"port.h"
-#include"I2c.h"
+#include"I2C.h"
 #include"intrins.h"
 
 #ifdef	USE_I2C_DELAY
