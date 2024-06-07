@@ -28,5 +28,6 @@ void lcd_out_str(char *str);
 void lcd_pos_char(unsigned char row, unsigned char col, char c);
 void lcd_pos_str(unsigned char row, unsigned char col, char *str);
 void lcd_customer_display(unsigned char location, char *lcd_str);
+void lcd_out_int(int n);
 
 #endif

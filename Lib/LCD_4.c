@@ -105,12 +105,12 @@ void Lcd_Init()
 	LCD_RW = 0;
 #endif
 	
-	Delay_ms(20);
+	delay_ms(20);
 
 	Lcd_Write_Low_Nibble(0x03);
 	LCD_EN = 1;
 	LCD_EN = 0;
-    Delay_ms(5);
+    delay_ms(5);
 
 	Lcd_Write_Low_Nibble(0x03);
 	LCD_EN = 1;
@@ -123,13 +123,13 @@ void Lcd_Init()
 #ifdef	USE_CHECK_BUSY
 	Lcd_Busy(); 
 #else
-	Delay_ms(1);
+	delay_ms(1);
 #endif
 
 	Lcd_Write_Low_Nibble(0x02);
 	LCD_EN = 1;
 	LCD_EN = 0;
-	Delay_ms(1);
+	delay_ms(1);
 		
 	Lcd_Cmd(_LCD_4BIT_2LINE_5x7FONT);
 	Lcd_Cmd(_LCD_TURN_ON);
@@ -162,7 +162,7 @@ void Lcd_Cmd(unsigned char cmd)
 	{
 		case _LCD_CLEAR:
 		case _LCD_RETURN_HOME:
-			Delay_ms(2);
+			delay_ms(2);
 			break;
 		default:
 			Lcd_Delay_us(37);
