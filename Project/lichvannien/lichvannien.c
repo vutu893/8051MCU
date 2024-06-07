@@ -4,6 +4,7 @@
 #include "../../Lib/Soft_I2C.h"
 #include "../../Lib/Rtc_Ds1307.h"
 //su dung IC ve thoi gian thuc: ds1307
+//su dung ngat INT1
 unsigned char* Days[] = {"SUN","MON","TUE", "WED", "THU", "FRI", "SAT"};
 void main()
 {	
