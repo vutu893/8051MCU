@@ -2,7 +2,7 @@
 #include "../../Lib/delay.h"
 
 //bai2: dung mode0 mo rong ngo vao voi ic74165
-
+//ta se dung it chan di vi du: 8 nut nhan ma chi mat 3 chan de ket noi voi vdk
 void main()
 {
 	//che do 0
