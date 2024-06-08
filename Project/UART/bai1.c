@@ -1,0 +1,1 @@
+// dung mode  0 de mo rong ngo ra
