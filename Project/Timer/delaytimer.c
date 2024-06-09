@@ -4,17 +4,15 @@ void delay_ms_Timer0(unsigned char t)
 {
 	unsigned char cnt;
 	do{
-		TL0 = 0;
-		TH0 = 0;
-		TR0 = 0;
-		do{
-			cnt = TH0;
-			cnt <<= 8;
-			cnt |= TL0;
-			
-		}while(cnt <= 1000);
+		//dem tu 65413 cho den luc tran
+		TL0 = 0x18;
+		TH0 = 0xFC;
+		TR0 = 1;
+		//DUNG CO TRAN CUA TIMER
+		while(!TF0);
 		//Timer 0 ngung dem
 		TR0	= 0;
+		TF0 = 0;
 		t--;
 	}while(t!=0)
 }
