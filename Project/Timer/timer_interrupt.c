@@ -35,6 +35,7 @@ void main()
 	TR0 = 1;
 	while(1)
 	{
-		
+		//vdk hoat dong che do ngu
+		PCON |= 0x01;
 	}
 }
