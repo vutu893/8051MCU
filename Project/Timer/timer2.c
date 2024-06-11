@@ -3,6 +3,9 @@
 //dung timer2 o che do 16bit tu dong nap lai
 //RCAP2H, RCAP2L la hai thang ghi dung de nap lai cho TH2, TL2
 //ham delay bang timer2
+//DUNG timer 2 de phat hien mat xung
+//truong hop thu hai tu dong nap la: co canh xuong o chan T2EX => dung de phat hien mat xung
+
 void Delay_Timer2_1s()
 {
 	unsigned char i;
