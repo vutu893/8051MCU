@@ -1,0 +1,108 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    07/16/2024  23:33:21  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\hong ngoai.obj, .\Objects\delay.obj TO .\Objects\giaotiephongngoai PRINT (.\Listin
+>> gs\giaotiephongngoai.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\hong ngoai.obj (HONG_NGOAI)
+  .\Objects\delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\giaotiephongngoai (HONG_NGOAI)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0020H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    0820H     0016H     UNIT         ?PR?MAIN?HONG_NGOAI
+            CODE    0836H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\giaotiephongngoai (HONG_NGOAI)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?HONG_NGOAI
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\giaotiephongngoai (HONG_NGOAI)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        HONG_NGOAI
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00CBH         PUBLIC        RCAP2H
+  D:00CAH         PUBLIC        RCAP2L
+  C:0820H         PUBLIC        main
+  D:0089H         PUBLIC        TMOD
+  D:00CDH         PUBLIC        TH2
+  D:00CCH         PUBLIC        TL2
+  B:00C8H.2       PUBLIC        TR2
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/16/2024  23:33:21  PAGE 2
+
+
+  D:00C8H         PUBLIC        T2CON
+  -------         PROC          MAIN
+  C:0820H         LINE#         3
+  C:0820H         LINE#         4
+  C:0820H         LINE#         5
+  C:0823H         LINE#         6
+  C:0826H         LINE#         8
+  C:0829H         LINE#         9
+  C:082CH         LINE#         11
+  C:082FH         LINE#         12
+  C:0832H         LINE#         14
+  C:0834H         LINE#         16
+  C:0834H         LINE#         17
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        HONG_NGOAI
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0800H         PUBLIC        _delay_ms
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0800H         LINE#         2
+  C:0800H         LINE#         3
+  C:0800H         LINE#         5
+  C:080AH         LINE#         6
+  C:080AH         LINE#         7
+  C:0818H         LINE#         8
+  C:081FH         LINE#         9
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?DELAY
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0036H BYTE ( 2%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=0 code=69
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
