@@ -22,6 +22,7 @@ void PWM_Init(unsigned int ck)
 	Ton = T / 2; //duty cycle = 50%
 	Toff = T /2;
 	
+	
 	Ton_high_reload = (65536 - Ton)>>8;
 	Ton_low_reload = (65536 - Ton)&0x00FF;
 	Toff_high_reload = (65536 - Toff)>>8;
