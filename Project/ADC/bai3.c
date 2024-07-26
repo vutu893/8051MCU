@@ -2,7 +2,8 @@
 #include "../../Lib/delay.h"
 #include "../../Lib/LCD_4.h"
 
-unsigned char ADC0809_Read();
+void ADC0808_Init();
+unsigned char ADC0808_Read();
 void main()
 {
 	unsigned char value_adc;
@@ -22,7 +23,11 @@ void main()
 		delay_ms(500);
 	}
 }
-unsigned char ADC0809_Read()
+void ADC0808_Init()
+{
+
+}
+unsigned char ADC0808_Read()
 {
 
 }
