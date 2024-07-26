@@ -1,6 +1,7 @@
 #include <REGX52.H>
 #include "../../Lib/delay.h"
 #include "../../Lib/LCD_4.h"
+#include "port.h"
 
 void ADC0808_Init();
 unsigned char ADC0808_Read();
@@ -12,12 +13,12 @@ void main()
 	while(1)
 	{
 		value_adc = ADC0809_Read();
-		
+		//tuong tu 0804
 		
 		
 		voltage = value_adc * 19.61f;
 		
-		
+		//tuong tu 0804
 		
 		
 		delay_ms(500);
@@ -40,7 +41,7 @@ unsigned char ADC0808_Read(unsigned char address)
 	ADC0808_ADDB = address & 0x02;
 	ADC0808_ADDC = address & 0x04;
 	
-	//Khoi dong IC thong qua cac chan start , ale
+	//Khoi dong IC thong qua cac chan start , ale: dung de chot dia chi
 	ADC0808_ALE = 1;
 	ADC0808_START = 1;
 	ADC0808_ALE = 0;
