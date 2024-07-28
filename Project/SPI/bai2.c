@@ -18,18 +18,33 @@ void SPI_Write_One_Byte(unsigned char b);
 unsigned char SPI_Read_One_Byte();
 void eeprom_25LCxxx_Write(unsigned int address, unsigned char b);
 unsigned char  eeprom_25LCxxx_Read(unsigned int address);
+unsigned char eeprom_25LCxxx_WIP();
+
 void main()
 {
 	SPI_Init();
 	
-	//muon ghi nhieu lan thi dung ham delay hoac su dung phuong phap kiem tra trang thai cua eeprom
+	//muon ghi nhieu lan thi dung ham delay hoac su dung phuong phap kiem tra trang thai cua eeprom neu khong se khong thuc hien duoc
+	// su dung flag status cua eeprom
 	eeprom_25LCxxx_Write(0, 0x55);
-	delay_ms(500);
 	P1 = eeprom_25LCxxx_Read(0);
 	while(1)
 	{
 	
 	}
+}
+
+//ham kiem tra trang thai cua eeprom
+unsigned char eeprom_25LCxxx_WIP()
+{
+	unsigned char result;
+	
+	SPI_CS = 0;
+	SPI_Write_One_Byte(0x05);
+	result = SPI_Read_One_Byte();
+	SPI_CS = 1;
+	
+	return result & 0x01; //chi xet bit thap nhat cua thanh ghi trang thai
 }
 //ham read voi eeprom
 unsigned char  eeprom_25LCxxx_Read(unsigned int address)
@@ -59,6 +74,8 @@ void eeprom_25LCxxx_Write(unsigned int address, unsigned char b)
 	SPI_Write_One_Byte(address & 0x00FF); // gui 8 byte thap
 	SPI_Write_One_Byte(b); //gui du lieu
 	SPI_CS = 1;
+	
+	while(eeprom_25LCxxx_WIP());
 }
 // ham khoi tao cho giao tiep SPI
 void SPI_Init()
