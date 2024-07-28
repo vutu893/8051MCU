@@ -17,6 +17,7 @@ void SPI_Init();
 void SPI_Write_One_Byte(unsigned char b);
 unsigned char SPI_Read_One_Byte();
 void eeprom_25LCxxx_Write(unsigned int address, unsigned char b);
+unsigned char  eeprom_25LCxxx_Read(unsigned int address);
 void main()
 {
 	SPI_Init();
@@ -24,11 +25,25 @@ void main()
 	//muon ghi nhieu lan thi dung ham delay hoac su dung phuong phap kiem tra trang thai cua eeprom
 	eeprom_25LCxxx_Write(0, 0x55);
 	delay_ms(500);
-	eeprom_25LCxxx_Write(1, 0x01);
+	P1 = eeprom_25LCxxx_Read(0);
 	while(1)
 	{
 	
 	}
+}
+//ham read voi eeprom
+unsigned char  eeprom_25LCxxx_Read(unsigned int address)
+{
+	unsigned char b;
+	
+	SPI_CS = 0;
+	SPI_Write_One_Byte(0x30);
+	SPI_Write_One_Byte( address>> 8); // GUI 8BIT CAO CUA ADDRESS
+	SPI_Write_One_Byte(address & 0x00FF); // gui 8 byte thap
+	b = SPI_Read_One_Byte();
+	SPI_CS = 1;
+	
+	return b;
 }
 //ham thao tac voi eeprom: ghi mot byte vao eeprom tai dia chi address
 // tra datasheet cua eeprom 25LCxxx de code function write
