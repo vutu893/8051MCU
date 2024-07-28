@@ -42,6 +42,7 @@ void SPI_Write_One_Byte(unsigned char b)
 	unsigned char i;
 	for(i = 0; i < 8; i++)
 	{
+		// check xem bit nhan la bit 0 hay bit 1
 		if(b & 0x80 != 0)
 		{
 			SPI_MOSI = 1;
@@ -62,7 +63,7 @@ unsigned char SPI_Read_One_Byte()
 	{
 		b <<= 1;
 		SPI_SCLK = 1;
-		// check bit doc la bit 1 hay bit 0
+		// check bit gui la bit 1 hay bit 0
 		if(SPI_MISO)
 		{
 			b |= 0x01;
