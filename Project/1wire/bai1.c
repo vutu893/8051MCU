@@ -1,6 +1,13 @@
 #include <REGX52.H>
+#include "../../Lib/delay.h"
+
+#define DS18B20_SKIPROM 0xCC
+#define DS18B20_CONVERT_T  0x44
+#define DS18B20_READ_SCRATCH_PAD 0xBE
+
 
 sbit DS18B20_PIN = P1^0;
+
 // gioi thieu ve giao tiep 1 wire: serial protocol
 // 1 wire master control one or more wire slave
 // 1 wire slave has 64 bit ID and include: 8-bit family code( quy dinh loai thiet bi) va 8 - bit de kiem tra loi
@@ -18,10 +25,23 @@ unsigned char DS18B20_Read_Byte();
 	
 void main()
 {
+	unsigned int temp;
 	TMOD |= 0x01; // timer 0 hoat dong o che do 1: dinh thoi 16bit
 	while(1)
 	{
-	
+		//doc du lieu tu cam bien ds18b20
+		while(DS18B20_Reset());
+		DS18B20_Write_Byte(DS18B20_SKIPROM);
+		DS18B20_Write_Byte(DS18B20_CONVERT_T);
+		
+		delay_ms(750);
+		
+		while(DS18B20_Reset());
+		DS18B20_Write_Byte(DS18B20_SKIPROM);
+		DS18B20_Write_Byte(DS18B20_READ_SCRATCH_PAD);
+		
+		temp = DS18B20_Read_Byte();
+		temp = (DS18B20_Read_Byte() << 8) | temp;
 	}
 }
 
@@ -126,3 +146,5 @@ unsigned char DS18B20_Read_Byte()
 	}
 	return result;
 }
+
+//
